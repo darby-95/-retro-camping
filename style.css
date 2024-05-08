@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+*{margin: 0; padding: 0;
+    color: #333; font-size: 14px;
+   }
+   body{font-family: "Noto Sans KR", sans-serif; }
+   li{list-style: none;} /* 기호제거 */
+   a{text-decoration:none ;} /* a태그에 나타나는 밑줄제거 */
+   img{width: 100%; display:block;}
+    /* 
+    img 태그는 인라인 요소이기 때문에 아래에 빈 공간이 생긴다.
+    해결 방법
+    1) display: block;
+    2) :vertical-align: top; */
+
+/* 인라인 요소는 공간에 대한 개념이 없다.
+⛔ 단 img,btn 태그는 공간을 인식한다. */
+
+.clearfix::after{content: ""; clear:both; display: block;}
+.container{width: 1200px;  margin: 0 auto;}
+
+
+/* header */
+.header{}
+.header h1{width: 200px; height: 100px;
+float: left;
+}
+.header .gnb{float: right;}
+.header .gnb ul{ }
+.header .gnb>ul>li{
+    position: relative;
+    float: left; width:150px; height: 100px;
+   text-align: center; line-height: 100px;
+}
+.header .gnb ul li a.mainnav {
+    display: block;
+    font-size: 18px; font-weight: bold; color: #333;
+    transition: 200ms; /* 1s = 1000ms  0.3s = 300ms */
+    /* background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,.4); ❗둘 다 같은 말 */
+}
+.header .gnb ul li:hover a.mainnav{
+    color: #0b7245; 
+    border-bottom: 3px solid #0b7245;
+}
+
+.header .gnb .subnav{
+    display: none;
+    position: absolute; top: 100px; left: 0;
+    width: 150px; height: 200px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    z-index: 100;
+    background-color: #fff;
+    }
+.header .gnb li:first-child .subnav{border-left: 1px solid #ccc;}
+.header .gnb li:last-child .subnav{border-right:  1px solid #ccc;;}
+
+
+
+/* 조건// 한 부모의 자식 // 
+li:first-child --> li중에서 첫째 자식
+li:last-child --> li중에서 막내 자식 
+li:nth-child(3) --> li중에서 세번째 자식
+li:nth-child(2n) --> li중에서 짝수의 자식(예. 2,4,6...자식)
+li:nth-child(even) --> li중에서 짝수의 자식(예. 2,4,6...자식)
+li:nth-child(2n+1) --> li중에서 홀수의 자식(예. 1,3,5...자식) 
+li:nth-child(odd) --> li중에서 홀수의 자식(예. 1,3,5...자식) */
+
+.header .gnb .subnav li{height: 50px; line-height: 50px;}
+.header .gnb .subnav li a{display: block;
+transition: 0.3s;
+}
+.header .gnb .subnav li a:hover{
+    background-color: #0b7245; color: #fff;
+}
+
+
+/* main */
+
+.main{position: relative;height: 300px; overflow: hidden;}
+.main ul{position: absolute; left: 0; top: 0; ❗❗❗❗❗z-index: -200;}
+.main ul li{}
+.main ul li a{}
+.main ul li a img{}
+
+/* contents */
+
+.contents{margin: 20px auto;}  /* m20-0 */
+.contents>div{float: left; width: 400px; height: 200px;
+    box-sizing: border-box; padding:5px 20px;
+}
+.contents .banner{}
+.contents .now{}
+.contents .board{ padding:0 20px;}
+.contents .board .btn{
+    border-bottom: 1px solid #999;
+}
+.contents .board .btn li{float: left; margin: 0 10px;
+line-height: 49px;
+}
+.contents .board .btn li a{display: block;}
+.contents .board .btn li.active a{color: #0b7245;
+border-bottom: 3px solid #0b7245;
+} 
+
+/* bwrap */
+
+.notice ul {}
+.notice ul li {
+    position: relative;
+    height: 30px; 
+    line-height: 30px;
+
+}
+.notice ul li:before {
+    content: "";
+    width: 2px; height: 2px;
+    background-color: #222;
+    position: absolute; top: 15px; left: 0;
+}
+.notice ul li a {
+    float: left; 
+    text-indent: 7px; 
+    font-size: 12px;
+    /* 문장 들여쓰기 (7px 뒤에서 앞문장이 시작)
+    padding-left 를 많이 사용함. */
+}
+.notice ul li span {
+    float: right; 
+    font-size: 12px;
+    padding-right: 10px;
+}
+
+.gallery {display: none;}
+.gallery ul {padding: 25px 0;}
+.gallery ul li {float: left; margin: 0 10px;}
+.gallery ul li a {}
+.gallery ul li a:hover img {opacity: 0.5;}
